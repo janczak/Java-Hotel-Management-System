@@ -21,6 +21,7 @@ import java.util.List;
 // AND public boolean importPaymentsData(String paymentsTxtFileName){...}
 // they are below, around line 150-200
 // You'll also need to make the Booking class and Payment class, see the comments I wrote in importBookingsData(..){...}
+// If you do it correctly you should be able to run the entire code without any errors.
 
 
 public class HotelImpl implements Hotel {
