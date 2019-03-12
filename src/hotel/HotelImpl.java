@@ -207,7 +207,7 @@ public class HotelImpl implements Hotel {
 
                 // Add a 'Payment' class same, same as before.
                 Payment p = new Payment(...);
-                bookings.add(p);
+                payments.add(p);
             }
             reader.close();
             isSuccessful = true;
@@ -266,6 +266,9 @@ public class HotelImpl implements Hotel {
      *  Supporting Methods
      */
 
+   
+    // IGNORE CODE BELOW
+    
     //...if any...
 
 
