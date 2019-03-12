@@ -17,11 +17,10 @@ import java.util.List;
  *
  */
 
-
 // MAKE public boolean importBookingsData(String bookingsTxtFileName){...}
 // AND public boolean importPaymentsData(String paymentsTxtFileName){...}
 // they are below, around line 150-200
-
+// You'll also need to make the Booking class and Payment class, see the comments I wrote in importBookingsData(..){...}
 
 
 public class HotelImpl implements Hotel {
@@ -77,6 +76,10 @@ public class HotelImpl implements Hotel {
         System.out.println("Date Joined " + guest.getDateJoin());
         System.out.println("VIP Start Date " + guest.getVIPstartDate());
         System.out.println("VIP Expiry Date " + guest.getVIPexpiryDate());
+        
+        
+        // Test other stuff here
+        
     }
     /*
      * Main Attributes
@@ -154,7 +157,6 @@ public class HotelImpl implements Hotel {
 
     public boolean importBookingsData(String bookingsTxtFileName){
         boolean isSuccessful = false;
-        /*
         try {
             BufferedReader reader = new BufferedReader(new FileReader(bookingsTxtFileName));
             String line = reader.readLine();
@@ -186,13 +188,12 @@ public class HotelImpl implements Hotel {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }*/
+        }
         return isSuccessful;
     }
 
     public boolean importPaymentsData(String paymentsTxtFileName){
         boolean isSuccessful = false;
-        /*
         try {
             BufferedReader reader = new BufferedReader(new FileReader(paymentsTxtFileName));
             String line = reader.readLine();
@@ -212,7 +213,7 @@ public class HotelImpl implements Hotel {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }*/
+        }
         return isSuccessful;
     }
 
