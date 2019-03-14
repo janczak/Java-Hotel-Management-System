@@ -11,43 +11,10 @@ import java.util.*;
  * Continuous Assessment 2019 - Hotel management system
  *
  * @author1 680063381 - mtj202 - 008203
- * @author2 680062814 - da376 - ADD YOUR CANDIDATE NUMBER PLS, idk if it matters but do it anyway lol
+ * @author2 680062814 - da376 -
  * @version 13/03/2019
  *
  */
-
-
-
-/*  So... before doing anything compile this code and run it, it should compile and run (and print some test stuff, like a list with all the rooms).
-
-
-    Make all of the methods which have not been added yet unless I commented next to them and said to not do them
-
-    Test your stuff in HotelImpl
-
-
-    The way I designed the code (probably shit lmao):
-
-    All the rooms, guests, bookings, payments data is stored as an object in the respective arrays/lists (around line 170)
-    So, e.g. the rooms array/list has a room object for each room
-    each room object has the data: roomNumber, roomType, roomPrice, roomCapacity, roomFacilities
-    Same concept for guests, bookings and payments
-    Each, or at least most, of the methods revolve around that ^
-
-
-    Whenever you're making a method look in the Hotel.java file to see what hongpong wrote about how the method works.
-    Then look at the CA sheet to make sure you cover all of her additional demands, e.g. special discounts for VIP...
-    ...or not being able to remove/add/change something because of something else etc..
-
-
-    Start by rewriting the Guest class so it has super and subclass like she demands
-    Then, make the addGuest method. After that, make all of the others ones.
-
-    You can edit the importGuestData after you change the Guest class if it doesn't make your code work (but maybe it will work anyway)
-    Do not change any of other the methods I made or might mess my code up whilst im adding stuff on my end
-
- */
-
 
 public class HotelImpl implements Hotel {
 
@@ -55,13 +22,7 @@ public class HotelImpl implements Hotel {
         HotelImpl init = new HotelImpl();
         init.HotelImpl("rooms.txt", "guests.txt", "bookings.txt", "payments.txt");
 
-        // NEED TO REMOVE 'MAIN' for final version because Hongpingpong
-        // will have her own 'main' function in her own test app.
-        // So, need to make this whole thing work without 'main'.
-
-        // Need to make an appropriate constructor in HotelImpl for it to work. Do this later.
-
-        // Also, need to add java documentation comments - do that at the end.
+        // remove in final version
 
     }
 
@@ -85,7 +46,9 @@ public class HotelImpl implements Hotel {
         // Test your stuff here
 
 
-
+        //if(isDateWithinRange(LocalDate.parse("25-01-2019"), LocalDate.parse("24-01-2019"), LocalDate.parse("26-01-2019"))) {
+        //    System.out.println("\nBob\n");
+        //}
 
 
 
@@ -98,11 +61,14 @@ public class HotelImpl implements Hotel {
         addRoom(101, RoomType.DOUBLE, 65, 2, "Shared bathroom");
 
         // Removing 2 rooms which exists
-        removeRoom(103);
+        removeRoom(103); // Room is booked, so shouldn't be removed
+        removeRoom(201); // Room not booked
         removeRoom(406);
 
         // Removing a room which does NOT exist
         removeRoom(508);
+
+        //isAvailable(405, LocalDate.parse("2019-02-10"), LocalDate.parse("2019-04-10"));
 
         // Print All Rooms
 
@@ -265,7 +231,7 @@ public class HotelImpl implements Hotel {
 
                 line = reader.readLine();
 
-                Booking b = new Booking(id, guestID, roomNumber, bookingDate, checkinDate, checkoutDate, totalCost); //Add correct parameters in Booking(id, guestID, ..etc)
+                Booking b = new Booking(id, guestID, roomNumber, bookingDate, checkinDate, checkoutDate, totalCost);
                 bookings.add(b);
             }
             reader.close();
@@ -360,12 +326,14 @@ public class HotelImpl implements Hotel {
 
     public boolean removeRoom(int roomNumber){
         try{
-            if(doesRoomExist(roomNumber)) {
-                rooms.remove(getRoomObject(roomNumber));
-                System.out.println("Room " + roomNumber + " has successfully been removed.");
+            if(doesRoomExist(roomNumber) && !isRoomBooked(roomNumber)) {
+                Object room = getRoomObject(roomNumber);
+                rooms.remove(room);
+                System.out.println("Room " + roomNumber + " has been removed successfully.");
                 return true;
             } else{
-                System.out.println("ACTION DENIED: Cannot remove room " + roomNumber + ". This room does not exist!");
+                System.out.println("ACTION DENIED: Cannot remove room " + roomNumber
+                        + ". This room does not exist or is currently booked!");
             }
         } catch (Exception ex){
             System.out.println(ex.getMessage());
@@ -373,15 +341,35 @@ public class HotelImpl implements Hotel {
         return false;
     }
 
-    // Sort out the guest class first before doing anything with addGuest
     public boolean addGuest(String fName, String lName, LocalDate dateJoin){return true;}
 
     public boolean addGuest(String fName, String lName, LocalDate dateJoin, LocalDate VIPstartDate, LocalDate VIPexpiryDate){return true;}
 
-    public boolean removeGuest(int guestID){return true;} // Leave this one
+    public boolean removeGuest(int guestID){
+        try{
+            if(doesGuestExist(guestID)) {
+                guests.remove(getGuestObject(guestID));
+                System.out.println("Guest " + guestID + " has been removed successfully.");
+                return true;
+            } else{
+                System.out.println("ACTION DENIED: Cannot remove guest " + guestID + ". This guest does not exist!");
+            }
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
 
-    public boolean isAvailable(int roomNumber, LocalDate checkin, LocalDate checkout){return true;}
-
+    public boolean isAvailable(int roomNumber, LocalDate checkin, LocalDate checkout) {
+        try {
+            if (!isRoomBooked(roomNumber)) {
+                System.out.println("Room " + roomNumber + " will be available between " + checkin + " and " + checkout);
+            }
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
     public int[] availableRooms(RoomType roomType, LocalDate checkin, LocalDate checkout){return null;}
 
     public int bookOneRoom(int guestID, RoomType roomType, LocalDate checkin, LocalDate checkout){return 1;}
@@ -398,32 +386,47 @@ public class HotelImpl implements Hotel {
 
     public void displayPaymentsOn(LocalDate thisDate){} // Leave this until the end
 
-    // I'll (try to) do the 4 save data ones below
-    public boolean saveRoomsData(String roomsTxtFileName){return true;} // Leave this one
+    public boolean saveRoomsData(String roomsTxtFileName){return true;}
 
-    public boolean saveGuestsData(String guestsTxtFileName){return true;} // Leave this one
+    public boolean saveGuestsData(String guestsTxtFileName){return true;}
 
-    public boolean saveBookingsData(String bookingsTxtFileName){return true;} // Leave this one
+    public boolean saveBookingsData(String bookingsTxtFileName){return true;}
 
-    public boolean savePaymentsData(String paymentsTxtFileName){return true;} // Leave this one
+    public boolean savePaymentsData(String paymentsTxtFileName){return true;}
 
     /*
      *  Supporting Methods
      */
 
-    // Add any of your own methods here
-
     private boolean doesRoomExist(int roomNumber){
         return rooms.stream().anyMatch(r -> r.getRoomNumber() == roomNumber);
     }
 
-    private Object getRoomObject(int roomNumber){
-        Room room = rooms.stream()
-                .filter(r -> r.getRoomNumber() == roomNumber)
-                .findFirst().orElseThrow();
-        return room;
+    private boolean doesGuestExist(int guestID){
+        return guests.stream().anyMatch(g -> g.getGuestID() == guestID);
     }
 
+    private boolean isRoomBooked(int roomNumber){
+        return bookings.stream().anyMatch(b -> b.getRoomNumber() == roomNumber);
+    }
+
+    private Object getRoomObject(int roomNumber){
+        Room roomObject = rooms.stream()
+                .filter(r -> r.getRoomNumber() == roomNumber)
+                .findFirst().orElseThrow(NoSuchElementException::new);
+        return roomObject;
+    }
+
+    private Object getGuestObject(int guestID){
+        Guest guestObject = guests.stream()
+                .filter(g -> g.getGuestID() == guestID)
+                .findFirst().orElseThrow(NoSuchElementException::new);
+        return guestObject;
+    }
+
+    private boolean isDateWithinRange(LocalDate dateChecked, LocalDate firstDate, LocalDate secondDate){
+        return firstDate.compareTo(dateChecked) * dateChecked.compareTo(secondDate) >= 0;
+    }
 }
 
 
