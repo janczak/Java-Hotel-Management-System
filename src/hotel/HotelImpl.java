@@ -50,8 +50,16 @@ public class HotelImpl implements Hotel {
         //    System.out.println("\nBob\n");
         //}
 
+        if(isDateWithinRange(LocalDate.of(2018, 6, 25), LocalDate.of(2018, 5, 25), LocalDate.of(2018, 6, 25))) {
+            System.out.println("\nYES!\n");
+        }
 
-
+        if(isAvailable(102, LocalDate.of(2019, 4, 2), LocalDate.of(2019, 3, 30))){
+            System.out.println("\nEpic hongchingpingpong\n");
+        }
+        if(isAvailable(102, LocalDate.of(2019, 3, 25), LocalDate.of(2019, 3, 30))){
+            System.out.println("\nNo\n");
+        }
 
         // Adding 2 rooms - should be added.
         addRoom(405, RoomType.SINGLE, 50, 2, "Shared bathroom");
@@ -68,9 +76,8 @@ public class HotelImpl implements Hotel {
         // Removing a room which does NOT exist
         removeRoom(508);
 
-        //isAvailable(405, LocalDate.parse("2019-02-10"), LocalDate.parse("2019-04-10"));
+        //isAvailable(405, LocalDate., LocalDate.parse("2019-04-10"));
 
-        // Print All Rooms
 
         // EITHER
         for (Room r : rooms) { System.out.println(r); }
@@ -153,15 +160,19 @@ public class HotelImpl implements Hotel {
                 switch (data[1]){
                     case "single":
                         roomType = RoomType.SINGLE;
+                        break;
 
                     case "double":
                         roomType = RoomType.DOUBLE;
+                        break;
 
                     case "family":
                         roomType = RoomType.FAMILY;
+                        break;
 
                     case "twin":
                         roomType = RoomType.TWIN;
+                        break;
                 }
                 double roomPrice = Double.valueOf(data[2]);
                 int roomCapacity = Integer.valueOf(data[3]);
@@ -362,14 +373,39 @@ public class HotelImpl implements Hotel {
 
     public boolean isAvailable(int roomNumber, LocalDate checkin, LocalDate checkout) {
         try {
-            if (!isRoomBooked(roomNumber)) {
-                System.out.println("Room " + roomNumber + " will be available between " + checkin + " and " + checkout);
+            if(!isRoomBooked(roomNumber)) {
+                System.out.println("XXX Room " + roomNumber + " will be available between "
+                        + checkin + " and " + checkout);
+                return true;
+            }
+            for(Booking b : bookings) {
+                int bookedRoomNumber = b.getRoomNumber();
+                if (bookedRoomNumber == roomNumber){
+                    LocalDate bookedCheckinDate = b.getCheckInDate();
+                    LocalDate bookedCheckoutDate = b.getCheckOutDate();
+
+                    System.out.println("\nTEST bookedCheckinDate = " + bookedCheckinDate);
+                    System.out.println("\nTEST bookedCheckoutDate = " + bookedCheckoutDate);
+                    System.out.println("\nTEST bookedRoomNumber = " + bookedRoomNumber);
+
+                    if (bookedRoomNumber == roomNumber && !isDateWithinRange(bookedCheckinDate, checkin, checkout)
+                            && !isDateWithinRange(bookedCheckoutDate, checkin, checkout)) {
+
+                        System.out.println("Room " + roomNumber + " will be available between "
+                                + checkin + " and " + checkout);
+                        return true;
+                    }
+                    break;
+                }
+
             }
         } catch (Exception ex){
             System.out.println(ex.getMessage());
         }
+        System.out.println("Room " + roomNumber + " will NOT be available between " + checkin + " and " + checkout);
         return false;
     }
+
     public int[] availableRooms(RoomType roomType, LocalDate checkin, LocalDate checkout){return null;}
 
     public int bookOneRoom(int guestID, RoomType roomType, LocalDate checkin, LocalDate checkout){return 1;}

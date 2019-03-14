@@ -18,29 +18,29 @@ import java.time.LocalDate;
 
 public class Guest {
 
-    private int initGuestID;
-    private String initfName;
-    private String initlName;
-    private LocalDate initDateJoin;
-    private LocalDate initVIPstartDate;
-    private LocalDate initVIPexpiryDate;
+    private int guestID;
+    private String fName;
+    private String lName;
+    private LocalDate dateJoin;
+    private LocalDate VIPstartDate;
+    private LocalDate VIPexpiryDate;
 
     public Guest(int guestID, String fName, String lName, LocalDate dateJoin, LocalDate VIPstartDate, LocalDate VIPexpiryDate){
 
-        initGuestID = guestID;
-        initfName = fName;
-        initlName = lName;
-        initDateJoin = dateJoin;
-        initVIPstartDate = VIPstartDate;
-        initVIPexpiryDate = VIPexpiryDate;
+        this.guestID = guestID;
+        this.fName = fName;
+        this.lName = lName;
+        this.dateJoin = dateJoin;
+        this.VIPstartDate = VIPstartDate;
+        this.VIPexpiryDate = VIPexpiryDate;
 
     }
-    public int getGuestID(){ return initGuestID; }
-    public String getfName(){ return initfName; }
-    public String getlName(){ return initlName; }
-    public LocalDate getDateJoin(){ return initDateJoin; }
-    public LocalDate getVIPstartDate(){ return initVIPstartDate; }
-    public LocalDate getVIPexpiryDate(){ return initVIPexpiryDate; }
+    public int getGuestID(){ return guestID; }
+    public String getfName(){ return fName; }
+    public String getlName(){ return lName; }
+    public LocalDate getDateJoin(){ return dateJoin; }
+    public LocalDate getVIPstartDate(){ return VIPstartDate; }
+    public LocalDate getVIPexpiryDate(){ return VIPexpiryDate; }
 
     // @Override
     // toString method
