@@ -49,8 +49,6 @@ import java.util.*;
  */
 
 
-
-
 public class HotelImpl implements Hotel {
 
     public static void main(String[] args){
@@ -78,7 +76,7 @@ public class HotelImpl implements Hotel {
         importPaymentsData(paymentsTxtFileName);
 
 
-        // // // // // // // // // TEST CHAMBERS // // // // // // // // //
+        // // // // // // // // // // TEST CHAMBERS // // // // // // // // // //
 
         // Lol
         System.out.println("--== Epic ==--");
