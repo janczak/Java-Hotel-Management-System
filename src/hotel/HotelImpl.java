@@ -16,9 +16,17 @@ import java.util.*;
  *
  */
 
+<<<<<<< HEAD
 
 
 /*  So... before doing anything compile this code and run it, it should compile and run (and print some test stuff, like a list with all the rooms).
+=======
+// MAKE public boolean importBookingsData(String bookingsTxtFileName){...}
+// AND public boolean importPaymentsData(String paymentsTxtFileName){...}
+// they are below, around line 150-200
+// You'll also need to make the Booking class and Payment class, see the comments I wrote in importBookingsData(..){...}
+// If you do it correctly you should be able to run the entire code without any errors.
+>>>>>>> 58285f9bfc855b5f5f7a5d25fda7301f88531931
 
 
     Make all of the methods which have not been added yet unless I commented next to them and said to not do them
@@ -146,6 +154,7 @@ public class HotelImpl implements Hotel {
         System.out.println("Date Joined " + guest.getDateJoin());
         System.out.println("VIP Start Date " + guest.getVIPstartDate());
         System.out.println("VIP Expiry Date " + guest.getVIPexpiryDate());
+<<<<<<< HEAD
 
         // Booking 100009 check
         System.out.println("\n\n--== Test: Booking 100009 ==--\n");
@@ -160,6 +169,12 @@ public class HotelImpl implements Hotel {
         System.out.println("Check in " + booking.getCheckInDate());
         System.out.println("Check out " + booking.getCheckOutDate());
         */
+=======
+        
+        
+        // Test other stuff here
+        
+>>>>>>> 58285f9bfc855b5f5f7a5d25fda7301f88531931
     }
     /*
      * Main Attributes
@@ -248,7 +263,11 @@ public class HotelImpl implements Hotel {
     }
 
     public boolean importBookingsData(String bookingsTxtFileName){
+<<<<<<< HEAD
 
+=======
+        boolean isSuccessful = false;
+>>>>>>> 58285f9bfc855b5f5f7a5d25fda7301f88531931
         try {
             BufferedReader reader = new BufferedReader(new FileReader(bookingsTxtFileName));
             String line = reader.readLine();
@@ -274,10 +293,18 @@ public class HotelImpl implements Hotel {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+<<<<<<< HEAD
         return false;
     }
 
     public boolean importPaymentsData(String paymentsTxtFileName){
+=======
+        return isSuccessful;
+    }
+
+    public boolean importPaymentsData(String paymentsTxtFileName){
+        boolean isSuccessful = false;
+>>>>>>> 58285f9bfc855b5f5f7a5d25fda7301f88531931
         try {
             BufferedReader reader = new BufferedReader(new FileReader(paymentsTxtFileName));
             String line = reader.readLine();
@@ -291,7 +318,12 @@ public class HotelImpl implements Hotel {
 
                 line = reader.readLine();
 
+<<<<<<< HEAD
                 Payment p = new Payment(date, guestID, amount, payReason);
+=======
+                // Add a 'Payment' class same, same as before.
+                Payment p = new Payment(...);
+>>>>>>> 58285f9bfc855b5f5f7a5d25fda7301f88531931
                 payments.add(p);
             }
             reader.close();
@@ -300,7 +332,11 @@ public class HotelImpl implements Hotel {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+<<<<<<< HEAD
         return false;
+=======
+        return isSuccessful;
+>>>>>>> 58285f9bfc855b5f5f7a5d25fda7301f88531931
     }
 
     public void displayAllRooms(){} // Leave this until the end
@@ -411,7 +447,14 @@ public class HotelImpl implements Hotel {
      *  Supporting Methods
      */
 
+<<<<<<< HEAD
     // Add any of your own methods here
+=======
+   
+    // IGNORE CODE BELOW
+    
+    //...if any...
+>>>>>>> 58285f9bfc855b5f5f7a5d25fda7301f88531931
 
     private boolean doesRoomExist(int roomNumber){
         return rooms.stream().anyMatch(r -> r.getRoomNumber() == roomNumber);
