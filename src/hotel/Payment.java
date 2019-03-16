@@ -25,8 +25,7 @@ public class Payment {
 
     @Override
     public String toString(){
-        return "Date: " + this.date + ", Guest ID: " + this.guestID + ", Amount: £"
-                + this.amount + ", Pay Reason: " + this.payReason;
+        return this.date + "," + this.guestID + "," + this.amount + "," + this.payReason;
     }
 
 }

@@ -26,8 +26,9 @@ public class Room {
     public String getRoomFacilities(){ return roomFacilities; }
 
     @Override
+    // Converts every room information into a single string. Convenient when displaying all rooms or writing to file.
     public String toString() {
-        return "Room " + this.roomNumber + ", Type: " + this.roomType + ", Price: £" + this.roomPrice
-               + ", Capacity: " + this.roomCapacity + ", Facilities: " + this.roomFacilities;
+        return this.roomNumber + "," + this.roomType + "," + this.roomPrice + "," + this.roomCapacity
+                + "," + this.roomFacilities;
     }
 }

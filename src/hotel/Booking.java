@@ -36,8 +36,7 @@ public class Booking {
 
     @Override
     public String toString(){
-        return "Booking ID: " + this.id + ", Guest ID: " + this.guestID + ", Room: " + this.roomNumber
-                + ", Booking Date: " + this.bookingDate + ", Checkin Date: " + this.checkinDate
-                + ", Checkout Date: " + this.checkoutDate + ", Total Amount: £" + this.totalAmount;
+        return this.id + "," + this.guestID + "," + this.roomNumber + "," + this.bookingDate + ","
+                + this.checkinDate + "," + this.checkoutDate + "," + this.totalAmount;
     }
 }
