@@ -1,7 +1,7 @@
 # Java-Hotel-Management-System
 ECM1410 CA March 2019 - Hotel Management System (Java)
 
-A Java based OOP project designed to satisfy the assignment specifications of designing a fully functional back-end code to implement 
+A Java based OOP project designed to satisfy the assignment specifications of designing a fully functional back-end code used to implement 
 an interface for a 'hotel management system', involving adding, removing, editing the following: rooms, bookings, guests, VIP guests 
 and so on. Data is read and written to text files.
 
