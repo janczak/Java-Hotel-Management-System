@@ -2,7 +2,8 @@
 ECM1410 CA March 2019 - Hotel Management System (Java)
 
 A Java based OOP project designed to satisfy the assignment specifications of designing a fully functional back-end code to implement 
-an interface for a 'hotel management system', involving adding, removing, editing: rooms, bookings, guests, VIP guests and so on.
+an interface for a 'hotel management system', involving adding, removing, editing the following: rooms, bookings, guests, VIP guests 
+and so on. Data is read and written to text files.
 
 View full specification of the assignment here: [Specification](https://drive.google.com/file/d/1lQmA4juwEH2dHOUgnRzTGVTPKV-HSSz2/view)
 
