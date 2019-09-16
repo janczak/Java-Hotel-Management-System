@@ -11,6 +11,3 @@ This project was my first time ever using and coding in Java, my first time usin
 was started a few weeks after I was introduced to the basics of programming, in Python. The project took a few days to complete.
 
 This project was also the first time I have used Git and GitHub.
-
-(The assignment was originally intended to be a pair-programming project, hence I decided to use GitHub; however, my assignment partner 
-was clueless, so I ended up coding and creating everything on my own.)
